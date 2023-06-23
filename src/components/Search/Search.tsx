@@ -11,7 +11,7 @@ type PropsType = {
 	onSearchChange: (searchData: SearchDataType | null) => void
 }
 const Search: FC<PropsType> = ({ onSearchChange }) => {
-	const [search, setSearch] = useState<SearchDataType | null>({ value: '', label: '' })
+	const [search, setSearch] = useState<SearchDataType | null>({ value: '', label: 'Search for city (en)' })
 
 	const handleOnChange = (searchData: SearchDataType | null) => {
 		alert(searchData?.value)
@@ -23,8 +23,7 @@ const Search: FC<PropsType> = ({ onSearchChange }) => {
 	return (
 		<AsyncPaginate
 			className={styles.search}
-			placeholder='Search for city'
-			debounceTimeout={2000}
+			debounceTimeout={600}
 			value={search}
 			onChange={handleOnChange}
 			loadOptions={loadOptions}
