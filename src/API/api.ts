@@ -1,8 +1,9 @@
 import axios from 'axios'
 import { IGeoData } from '../Interfaces/IGeo'
+import { IWeatherAPI } from '../Interfaces/IWeather'
 
 export const GEO_API_URL = 'https://wft-geo-db.p.rapidapi.com/v1/geo'
-export const WEATHER_API_URL = 'https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}'
+export const WEATHER_API_URL = 'https://api.openweathermap.org/data/2.5'
 
 export const geoApiOptions = {
 	params: {
@@ -20,14 +21,21 @@ export const weatherApiOptions = {
 	},
 }
 
-export const loadOptions = (inputValue: string) =>
-	axios.get<IGeoData>(`${GEO_API_URL}/cities?namePrefix=${inputValue}`, geoApiOptions).then(response => {
-		return {
-			options: response.data.data.map(city => ({
-				value: `${city.latitude} ${city.longitude}`,
-				label: `${city.name}, ${city.countryCode}`,
-			})),
-		}
-	})
+export const loadOptions = async (inputValue: string) => {
+	const result = await axios.get<IGeoData>(`${GEO_API_URL}/cities?namePrefix=${inputValue}`, geoApiOptions)
+	const { data } = await result
+	const options = data.data.map(city => ({
+		value: `${city.latitude} ${city.longitude}`,
+		label: `${city.name}, ${city.countryCode}`,
+	}))
 
-//export const getCurrentWeather = () => {}
+	return {
+		options,
+	}
+}
+
+export const getCurrentWeather = async (lat: number, lon: number) => {
+	const result = await axios.get<IWeatherAPI>(`${WEATHER_API_URL}/weather?lat=${lat}&lon=${lon}`, weatherApiOptions)
+	const { data } = await result
+	return data
+}
