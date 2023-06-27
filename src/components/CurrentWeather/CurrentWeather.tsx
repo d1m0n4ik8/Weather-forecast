@@ -1,14 +1,14 @@
 import { FC, useEffect, useState } from 'react'
-import { getCurrentWeather } from '../API/api'
-import { cityDataType } from '../App'
-import { IWeatherAPI } from '../Interfaces/IWeather'
+import { getCurrentWeather } from '../../API/api'
+import { cityDataType } from '../../App'
+import { IWeatherAPI } from '../../Interfaces/IWeather'
 
 type CurrentWeatherProp = {
 	cityData: cityDataType
 }
 
 const CurrentWeather: FC<CurrentWeatherProp> = ({ cityData }) => {
-	const [weatherData, setWeatherData] = useState<IWeatherAPI>()
+	const [weatherData, setWeatherData] = useState<IWeatherAPI | null>(null)
 
 	useEffect(() => {
 		if (cityData) {

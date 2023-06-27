@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { IGeoData } from '../Interfaces/IGeo'
-import { IWeatherAPI } from '../Interfaces/IWeather'
+import { IWeatherAPI, IWeatherForecast } from '../Interfaces/IWeather'
 
 export const GEO_API_URL = 'https://wft-geo-db.p.rapidapi.com/v1/geo'
 export const WEATHER_API_URL = 'https://api.openweathermap.org/data/2.5'
@@ -18,6 +18,7 @@ export const geoApiOptions = {
 export const weatherApiOptions = {
 	params: {
 		appid: '193a709fb7933966f68b98b03a35dc85',
+		units: 'metric',
 	},
 }
 
@@ -36,6 +37,15 @@ export const loadOptions = async (inputValue: string) => {
 
 export const getCurrentWeather = async (lat: number, lon: number) => {
 	const result = await axios.get<IWeatherAPI>(`${WEATHER_API_URL}/weather?lat=${lat}&lon=${lon}`, weatherApiOptions)
+	const { data } = await result
+	return data
+}
+
+export const getWeatherForecast = async (lat: number, lon: number) => {
+	const result = await axios.get<IWeatherForecast>(
+		`${WEATHER_API_URL}/forecast?lat=${lat}&lon=${lon}`,
+		weatherApiOptions
+	)
 	const { data } = await result
 	return data
 }

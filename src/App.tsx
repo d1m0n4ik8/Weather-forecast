@@ -1,8 +1,8 @@
 import { FC, useState } from 'react'
 import { Coord } from './Interfaces/IWeather'
-import CurrentWeather from './components/CurrentWeather'
+import CurrentWeather from './components/CurrentWeather/CurrentWeather'
 import Search, { SearchDataType } from './components/Search/Search'
-import WeatherAccordion from './components/WeatherAccordion'
+import WeatherForecast from './components/WeatherForecast/WeatherForecast'
 
 export type cityDataType = {
 	city: string
@@ -23,7 +23,7 @@ const App: FC = () => {
 		<div>
 			<Search onSearchChange={handleOnSearchChange} />
 			<CurrentWeather cityData={cityData} />
-			<WeatherAccordion />
+			<WeatherForecast cityData={cityData} />
 		</div>
 	)
 }

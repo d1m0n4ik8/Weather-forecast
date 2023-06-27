@@ -59,3 +59,10 @@ export interface Wind {
 	deg: number
 	gust: number
 }
+
+export interface IWeatherForecast {
+	cod: string
+	message: number
+	cnt: number
+	list: IWeatherAPI[]
+}
