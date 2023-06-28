@@ -55,7 +55,12 @@ const CurrentWeather: FC<CurrentWeatherProp> = ({ cityData }) => {
 					</div>
 				</div>
 			) : (
-				<div className={style.empty} />
+				<div className={style.empty}>
+					<div>
+						<img src='https://www.pngall.com/wp-content/uploads/11/Weather-PNG.png' alt='weather' width={200} />
+					</div>
+					<div>Enter a city to get the weather forecast</div>
+				</div>
 			)}
 		</>
 	)

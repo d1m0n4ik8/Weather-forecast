@@ -1,6 +1,11 @@
 .empty {
-	min-height: 50vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 36px;
 	width: 100%;
+	font-style: italic;
 }
 
 .weather {
