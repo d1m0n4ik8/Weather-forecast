@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react'
 import { getCurrentWeather } from '../../API/api'
 import { cityDataType } from '../../App'
 import { IWeatherAPI } from '../../Interfaces/IWeather'
+import style from './CurrentWeather.module.scss'
 
 type CurrentWeatherProp = {
 	cityData: cityDataType
@@ -20,41 +21,41 @@ const CurrentWeather: FC<CurrentWeatherProp> = ({ cityData }) => {
 	return (
 		<>
 			{weatherData ? (
-				<div className='weather'>
-					<div className='top'>
+				<div className={style.weather}>
+					<div className={style.top}>
 						<div>
-							<p className='city'>{cityData?.city}</p>
-							<p className='weather-description'>{weatherData.weather[0].description}</p>
+							<p className={style.city}>{cityData?.city}</p>
+							<p className={style.weatherDescription}>{weatherData.weather[0].description}</p>
 						</div>
-						<img alt='weather' className='weather-icon' src={`icons/${weatherData.weather[0].icon}.png`} />
+						<img alt='weather' className={style.weatherIcon} src={`icons/${weatherData.weather[0].icon}.png`} />
 					</div>
-					<div className='bottom'>
-						<p className='temperature'>{Math.round(weatherData.main.temp)}°C</p>
-						<div className='details'>
-							<div className='parameter-row'>
-								<span className='parameter-label'>Details</span>
+					<div className={style.bottom}>
+						<p className={style.temperature}>{Math.round(weatherData.main.temp)}°C</p>
+						<div className={style.details}>
+							<div className={style.parameterRow}>
+								<span className={style.parameterLabel}>Details</span>
 							</div>
-							<div className='parameter-row'>
-								<span className='parameter-label'>Feels like</span>
-								<span className='parameter-value'>{Math.round(weatherData.main.feels_like)}°C</span>
+							<div className={style.parameterRow}>
+								<span className={style.parameterLabel}>Feels like</span>
+								<span className={style.parameterValue}>{Math.round(weatherData.main.feels_like)}°C</span>
 							</div>
-							<div className='parameter-row'>
-								<span className='parameter-label'>Wind</span>
-								<span className='parameter-value'>{weatherData.wind.speed} m/s</span>
+							<div className={style.parameterRow}>
+								<span className={style.parameterLabel}>Wind</span>
+								<span className={style.parameterValue}>{weatherData.wind.speed} m/s</span>
 							</div>
-							<div className='parameter-row'>
-								<span className='parameter-label'>Humidity</span>
-								<span className='parameter-value'>{weatherData.main.humidity}%</span>
+							<div className={style.parameterRow}>
+								<span className={style.parameterLabel}>Humidity</span>
+								<span className={style.parameterValue}>{weatherData.main.humidity}%</span>
 							</div>
-							<div className='parameter-row'>
-								<span className='parameter-label'>Pressure</span>
-								<span className='parameter-value'>{weatherData.main.pressure} hPa</span>
+							<div className={style.parameterRow}>
+								<span className={style.parameterLabel}>Pressure</span>
+								<span className={style.parameterValue}>{weatherData.main.pressure} hPa</span>
 							</div>
 						</div>
 					</div>
 				</div>
 			) : (
-				<div></div>
+				<div className={style.empty} />
 			)}
 		</>
 	)

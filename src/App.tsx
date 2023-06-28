@@ -1,4 +1,5 @@
 import { FC, useState } from 'react'
+import './App.scss'
 import { Coord } from './Interfaces/IWeather'
 import CurrentWeather from './components/CurrentWeather/CurrentWeather'
 import Search, { SearchDataType } from './components/Search/Search'
@@ -20,10 +21,14 @@ const App: FC = () => {
 	}
 
 	return (
-		<div>
-			<Search onSearchChange={handleOnSearchChange} />
-			<CurrentWeather cityData={cityData} />
-			<WeatherForecast cityData={cityData} />
+		<div className='cloud-intro'>
+			<div className='main container'>
+				<div className='glass'>
+					<Search onSearchChange={handleOnSearchChange} />
+					<CurrentWeather cityData={cityData} />
+					<WeatherForecast cityData={cityData} />
+				</div>
+			</div>
 		</div>
 	)
 }

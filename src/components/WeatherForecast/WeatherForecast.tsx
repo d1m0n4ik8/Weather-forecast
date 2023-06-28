@@ -12,6 +12,8 @@ type WeatherForecastProps = {
 
 const WeatherForecast: FC<WeatherForecastProps> = ({ cityData }) => {
 	const [weatherData, setWeatherData] = useState<IWeatherForecast | null>(null)
+	const day = new Date().getDay()
+	const newWeekDays = WEEK_DAYS.slice(day, WEEK_DAYS.length).concat(WEEK_DAYS.slice(0, day))
 
 	useEffect(() => {
 		if (cityData) {
@@ -20,11 +22,10 @@ const WeatherForecast: FC<WeatherForecastProps> = ({ cityData }) => {
 		}
 	}, [cityData])
 
-	console.log(weatherData)
 	if (!weatherData) return <></>
 	return (
 		<div>
-			{WEEK_DAYS.map((day, index) => (
+			{newWeekDays.map((day, index) => (
 				<ForecastItem key={index} weatherData={weatherData.list[index]} day={day} />
 			))}
 		</div>

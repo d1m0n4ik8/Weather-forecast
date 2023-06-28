@@ -7,7 +7,7 @@ export const WEATHER_API_URL = 'https://api.openweathermap.org/data/2.5'
 
 export const geoApiOptions = {
 	params: {
-		minPopulation: '1000000',
+		minPopulation: '100000',
 	},
 	headers: {
 		'X-RapidAPI-Key': 'baec267a1amsh2bf000e500f52b8p1ba39cjsnb9d109d6b2cb',
