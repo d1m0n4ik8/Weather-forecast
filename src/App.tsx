@@ -16,7 +16,7 @@ const App: FC = () => {
 	const handleOnSearchChange = (searchData: SearchDataType) => {
 		if (!searchData) return
 		const [lat, lon] = searchData.value.split(' ').map(value => Number(value))
-		const city = searchData.label
+		const city = searchData.label.toLowerCase()
 		setCityData({ city, coordinates: { lon, lat } })
 	}
 
